@@ -26,7 +26,6 @@ pipeline{
         stage("Setup Python Env"){
             input {
                 message "Posso Testare?"
-                ok "Si"
             }
             steps{
                 sh """#!/bin/bash
