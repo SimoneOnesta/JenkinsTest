@@ -38,7 +38,7 @@ pipeline{
 			 source ${PYTHON_VENV_PATH}/${PYTHON_ENV}/bin/activate 
 
 			 # Python tests for libs
-			 python3.7 -m pytest 
+			 pytest 
 			 """
 		  } catch(err) {
 		    sh 'echo ERROREEE'
