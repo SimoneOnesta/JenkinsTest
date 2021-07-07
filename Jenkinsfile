@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent {label 'azubl00013'}
      environment {
 	  PYTHON_VENV_PATH	        = "/var/lib/jenkins/penv"
 	  PYTHON_ENV        	    = "dbconnect"
