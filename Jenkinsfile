@@ -10,7 +10,7 @@ pipeline{
             steps{
                 sh '''echo Execute....
                  pwd
-                 pytest Test
+                 PyTest Test
                  '''
             }
         }
