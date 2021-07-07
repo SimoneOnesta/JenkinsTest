@@ -10,7 +10,8 @@ pipeline{
             steps{
                 sh '''echo Execute....
                  pwd
-                 python3.7 -m pytest Test
+                 cd /var/lib/jenkins/penv
+                 ls
                  '''
             }
         }
