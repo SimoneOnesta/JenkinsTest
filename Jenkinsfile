@@ -8,7 +8,10 @@ pipeline{
         }
         stage("Execute"){
             steps{
-                sh 'echo Execute..'
+                sh '''echo Execute....
+                 pwd
+                 pytest Test
+                 '''
             }
         }
         stage("Finish"){
