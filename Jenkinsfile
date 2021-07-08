@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage("Start"){
             when {
-               0 == 1
+              branch 'production'
             }
             steps{
                 sh 'echo Start..'
