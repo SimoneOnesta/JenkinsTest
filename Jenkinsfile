@@ -44,6 +44,7 @@ pipeline{
 		    sh 'echo ERROREEE'
 		  }
 	     }
+         input message: 'Do you Approve?'
         }
         }
     }
