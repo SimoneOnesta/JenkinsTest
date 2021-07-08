@@ -8,6 +8,9 @@ pipeline{
     }  
     stages{
         stage("Start"){
+            when {
+               0 == 1
+            }
             steps{
                 sh 'echo Start..'
             }
