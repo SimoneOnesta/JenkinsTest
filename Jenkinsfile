@@ -13,7 +13,6 @@ pipeline{
             }
         } 
         stage("Setup Python Env"){
-            input message "Posso Testare?"
             steps{
                 sh """#!/bin/bash
 			    # Enable Python virtual environment for tests
