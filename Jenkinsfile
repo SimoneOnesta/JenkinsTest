@@ -30,10 +30,12 @@ pipeline{
 				   echo 'password:${PWD_ARTIFACTORY}' >> /var/lib/jenkins/.pypirc
 				   """
 				}
+                input message: 'Do you Approve?'
             }
         }
         stage("Execute"){
             steps{
+            echo "RESULT: ${currentBuild.result}"
                 script {
 		  try {
 		    sh """#!/bin/bash
@@ -47,7 +49,7 @@ pipeline{
 		    sh 'echo ERROREEE'
 		  }
 	     }
-         input message: 'Do you Approve?'
+         
         }
         }
     }
