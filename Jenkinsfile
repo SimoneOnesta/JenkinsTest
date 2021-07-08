@@ -11,22 +11,9 @@ pipeline{
             steps{
                 sh 'echo Start..'
             }
-        }
-        post{
-            always{
-                echo 'Ho terminato lo start'
-            }
-            failure{
-                echo 'Start fallito'
-            }
-            success{
-                echo 'Start riuscito'
-            }
-        }
+        } 
         stage("Setup Python Env"){
-            input {
-                message "Posso Testare?"
-            }
+            input message "Posso Testare?"
             steps{
                 sh """#!/bin/bash
 			    # Enable Python virtual environment for tests
@@ -61,4 +48,15 @@ pipeline{
         }
         }
     }
+    post{
+            always{
+                echo 'Ho terminato la pipeline'
+            }
+            failure{
+                echo 'Pipeline fallita'
+            }
+            success{
+                echo 'Pipeline riuscita'
+            }
+        }
 }
