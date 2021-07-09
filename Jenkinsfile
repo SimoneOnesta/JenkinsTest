@@ -33,7 +33,7 @@ pipeline{
                 input message: 'Do you Approve?'
             }
         }
-        stage("Execute"){
+        stage("Test Python"){
             steps{
             echo "RESULT: ${currentBuild.result}"
                 script {
@@ -44,6 +44,8 @@ pipeline{
 
 			 # Python tests for libs
 			 pytest 
+             cd terraform/platform
+             ls
 			 """
 		  } catch(err) {
 		    sh 'echo ERROREEE'
@@ -51,6 +53,29 @@ pipeline{
 	     }
          
         }
+        }
+        stage("Test Terraform"){
+            options {
+                azureKeyVault(
+                    credentialID: 'SON_SERVICE_APP'
+                    keyVaultURL: 'https://terraformconnector.vault.azure.net/'
+                    secrets: [
+                        [envVariable: 'ARM_CLIENT_ID' name: 'terraform-client-id', secretType: 'Secret'],
+                        [envVariable: 'ARM_CLIENT_SECRET' name: 'terraform-secret', secretType: 'Secret'],
+                        [envVariable: 'ARM_SUBSCRIPTION_ID' name: 'terraforr-subscriptio-id', secretType: 'Secret'],
+                        [envVariable: 'ARM_TENANT_ID' name: 'terraform-tenant-id', secretType: 'Secret']
+                    ]
+                )
+
+            }
+            steps{
+                echo "deploy infra"
+                sh '''
+                    cd TerraformExample
+                    terraform init
+                    terraform apply -auto-approve
+                 '''
+            }
         }
     }
     post{
