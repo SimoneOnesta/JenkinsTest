@@ -60,10 +60,10 @@ pipeline{
                     credentialID: 'SON_SERVICE_APP',
                     keyVaultURL: 'https://terraformconnector.vault.azure.net/',
                     secrets: [
-                        [envVariable: 'ARM_CLIENT_ID' name: 'terraform-client-id', secretType: 'Secret'],
-                        [envVariable: 'ARM_CLIENT_SECRET' name: 'terraform-secret', secretType: 'Secret'],
-                        [envVariable: 'ARM_SUBSCRIPTION_ID' name: 'terraforr-subscriptio-id', secretType: 'Secret'],
-                        [envVariable: 'ARM_TENANT_ID' name: 'terraform-tenant-id', secretType: 'Secret']
+                        [envVariable: 'ARM_CLIENT_ID', name: 'terraform-client-id', secretType: 'Secret'],
+                        [envVariable: 'ARM_CLIENT_SECRET', name: 'terraform-secret', secretType: 'Secret'],
+                        [envVariable: 'ARM_SUBSCRIPTION_ID', name: 'terraforr-subscriptio-id', secretType: 'Secret'],
+                        [envVariable: 'ARM_TENANT_ID', name: 'terraform-tenant-id', secretType: 'Secret']
                     ]
                 )
 
