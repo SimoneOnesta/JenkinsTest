@@ -73,7 +73,7 @@ pipeline{
                 sh '''
                     cd TerraformExample
                     terraform init
-                    terraform apply -auto-approve
+                    terraform plan
                  '''
             }
         }
