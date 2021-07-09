@@ -71,7 +71,7 @@ pipeline{
             steps{
                 echo "deploy infra"
                 sh '''
-                    cd TerraformExample
+                    cd Terraform
                     terraform init
                     terraform plan
                  '''
