@@ -57,8 +57,8 @@ pipeline{
         stage("Test Terraform"){
             options {
                 azureKeyVault(
-                    credentialID: 'SON_SERVICE_APP'
-                    keyVaultURL: 'https://terraformconnector.vault.azure.net/'
+                    credentialID: 'SON_SERVICE_APP',
+                    keyVaultURL: 'https://terraformconnector.vault.azure.net/',
                     secrets: [
                         [envVariable: 'ARM_CLIENT_ID' name: 'terraform-client-id', secretType: 'Secret'],
                         [envVariable: 'ARM_CLIENT_SECRET' name: 'terraform-secret', secretType: 'Secret'],
