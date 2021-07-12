@@ -64,6 +64,8 @@ pipeline{
                 TF_VAR_HTTP_PROXY     = credentials('HTTP_PROXY')
                 TF_VAR_HTTPS_PROXY    = credentials('HTTP_PROXY')
                 TF_VAR_NO_PROXY       = credentials('NO_PROXY')
+                CONTAINER_NAME        = 'tfstates'
+                STORAGE_ACCOUNT_NAME  = 'terraformplantestso'
             }
             options {
                 azureKeyVault(
@@ -82,12 +84,14 @@ pipeline{
                 echo "deploy infra"
                 sh '''
                     cd Terraform
-                    terraform init
+                    terraform init  -backend-config "key=Terraform/terraform.tfstate" -backend-config "storage_account_name=${STORAGE_ACCOUNT_NAME}" -backend-config "container_name=${CONTAINER_NAME}"
                     echo $ARM_CLIENT_ID
                     echo $ARM_CLIENT_SECRET
                     echo $ARM_SUBSCRIPTION_ID
                     echo $ARM_TENANT_ID
-                    terraform plan
+                    terraform plan -out tfplan
+                    terraform show -no-color tfplan > tfplan.txt
+                    archiveArtifacts artifacts: 'Terraform/tfplan.txt'
                  '''
             }
         }
