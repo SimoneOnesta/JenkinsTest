@@ -73,6 +73,10 @@ pipeline{
                 sh '''
                     cd Terraform
                     terraform init
+                    echo $ARM_CLIENT_ID
+                    echo $ARM_CLIENT_SECRET
+                    echo $ARM_SUBSCRIPTION_ID
+                    echo $ARM_TENANT_ID
                     terraform plan
                  '''
             }
