@@ -55,6 +55,16 @@ pipeline{
         }
         }
         stage("Test Terraform"){
+            environment{
+                TF_IN_AUTOMATION      = '1'
+                CHECKPOINT_DISABLE    = '1'
+                HTTPS_PROXY           = credentials('HTTP_PROXY')
+                HTTP_PROXY            = credentials('HTTP_PROXY')
+                NO_PROXY              = credentials('NO_PROXY')
+                TF_VAR_HTTP_PROXY     = credentials('HTTP_PROXY')
+                TF_VAR_HTTPS_PROXY    = credentials('HTTP_PROXY')
+                TF_VAR_NO_PROXY       = credentials('NO_PROXY')
+            }
             options {
                 azureKeyVault(
                     credentialID: 'SON_SERVICE_APP',
