@@ -91,8 +91,9 @@ pipeline{
                     echo $ARM_TENANT_ID
                     terraform plan -out tfplan
                     terraform show -no-color tfplan > tfplan.txt
-                    archiveArtifacts artifacts: 'Terraform/tfplan.txt'
+                    
                  '''
+                 archiveArtifacts artifacts: 'Terraform/tfplan.txt'
             }
         }
     }
